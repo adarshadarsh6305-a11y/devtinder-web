@@ -9,8 +9,7 @@ const Body = () =>{
         <Outlet/>
         <Footer/>
      </div>
+    
     );
-   
-   
 }
  export default Body;
