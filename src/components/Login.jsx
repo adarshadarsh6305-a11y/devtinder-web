@@ -8,6 +8,8 @@ import {Base_Url} from "../constants";
 const Login = () => {
   const [emailId,setEmailId]=useState("adarsh@gmail.com");
   const [password,setPassword]=useState("Adarsh@123");
+  const [error,setError]=useState("");
+
   const dispatch=useDispatch();
   const navigate=useNavigate();
 const handleLogin = async ()=>{
@@ -17,9 +19,12 @@ const handleLogin = async ()=>{
     dispatch(addUser(res.data));
     return navigate("/");
   }
+
+
   catch(err){
-    console.log(err.message);
+    setError(err?.response?.data);
   }
+  
 }
   return (
      <div className="flex items-center justify-center min-h-screen bg-base-100 p-4">
@@ -48,6 +53,7 @@ const handleLogin = async ()=>{
               onChange={(e)=>setPassword(e.target.value)}
             />
           </div>
+          <p className="text-red-500">{error}</p>
  <div className="flex justify-center">
             <button onClick={handleLogin}
               type="button" 
