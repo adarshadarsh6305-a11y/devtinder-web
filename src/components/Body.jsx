@@ -32,7 +32,6 @@ const Body = () =>{
             console.log(err);
         }
 
-
     };
     useEffect(()=>{
         fetchUser();

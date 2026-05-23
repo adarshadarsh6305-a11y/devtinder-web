@@ -6,6 +6,8 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {removeUser} from "../utils/userSlice";
 import {removeFeed} from "../utils/feedSlice";
+import {removeConnections} from "../utils/connectionSlice";
+
 
 
 const Navbar = () => {
@@ -19,9 +21,11 @@ const Navbar = () => {
     await axios.post(Base_Url+"/logout",{},{withCredentials:true});
     dispatch(removeUser());
     dispatch(removeFeed());
+    dispatch(removeConnections());
 
     navigate("/login");
   };
+
 
   return (
 
@@ -38,7 +42,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3 mr-5">
 
           <h1 className="font-semibold">
-            Welcome {user?.lastName}
+            Welcome, {user?.lastName}
           </h1>
 
           <div className="dropdown dropdown-end">
@@ -49,14 +53,15 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
 
-              <div className="w-10 rounded-full">
+             <div className="w-10 h-10 rounded-full overflow-hidden">
 
-                <img
-                  alt="profile"
-                  src={user?.photoUrl}
-                />
+  <img
+    alt="profile"
+    src={user.photoUrl}
+    className="w-full h-full object-cover"
+  />
 
-              </div>
+</div>
 
             </div>
 
@@ -67,7 +72,7 @@ const Navbar = () => {
 
               <li><Link to="/profile" >Profile</Link></li>
 
-              <li><a>Settings</a></li>
+              <li><Link to="/connections">Connections</Link></li>
 
               <li onClick={handleLogout}><a>Logout</a></li>
 

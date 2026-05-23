@@ -1,6 +1,5 @@
 const UserCard = ({ feed }) => {
 
-  if (!feed) return;
 
   const {
     firstName,
@@ -27,17 +26,27 @@ const UserCard = ({ feed }) => {
       <div className="card-body space-y-4">
 
         {/* Name + Age */}
-        <div className="flex items-center gap-2">
+      <div>
 
-          <h1 className="text-4xl font-bold text-white">
-            {firstName} {lastName}
-          </h1>
+  <div className="flex items-center gap-2">
 
-          <span className="text-2xl text-gray-300 font-medium">
-            {age}
-          </span>
+    <h1 className="text-4xl font-bold text-white">
+      {firstName} {lastName}
+    </h1>
 
-        </div>
+    <span className="text-2xl text-gray-300 font-medium">
+      {age}
+    </span>
+
+  </div>
+
+  <p className="text-gray-400 text-sm mt-1 capitalize">
+
+    {gender}
+
+  </p>
+
+</div>
 
         {/* About */}
         {about && (
