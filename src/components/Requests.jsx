@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addRequests } from "../utils/requestSlice";
 import { removeRequest} from "../utils/requestSlice";
+import {removeConnections} from "../utils/connectionSlice";
+
 
 
 const Requests = () => {
@@ -20,6 +22,7 @@ const Requests = () => {
         {}
         ,{withCredentials:true});
         dispatch(removeRequest(_id));
+        dispatch(removeConnections());
       }
 catch(err){
   console.log(err);

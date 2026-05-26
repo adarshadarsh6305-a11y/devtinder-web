@@ -14,7 +14,7 @@ const Connections = () => {
 
   const fetchConnections = async () => {
 
-    if(userConnections) return;
+     if(userConnections && userConnections.length > 0) return;
 
     try{
 
@@ -37,8 +37,7 @@ const Connections = () => {
     fetchConnections();
   },[]);
 
-  if(!userConnections) return null;
-
+if(!userConnections) return;
 
   if(userConnections?.length === 0){
 
