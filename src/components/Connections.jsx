@@ -44,7 +44,7 @@ const Connections = () => {
 
   return (
 
-    <div className="flex flex-col items-center justify-center my-24">
+    <div className="flex flex-col items-center justify-center my-24 ">
 
       <h1 className="text-4xl font-bold text-white mb-4">
         No Connections Yet
@@ -62,7 +62,7 @@ const Connections = () => {
 
   return (
 
-    <div className="flex flex-col items-center my-10">
+    <div className="flex flex-col items-center my-10 mb-20">
 
       <h1 className="text-4xl font-bold text-white mb-8">
         Your Connections
@@ -89,7 +89,7 @@ const Connections = () => {
 
            <div
   key={_id}
-  className="flex items-center justify-between bg-base-200 p-5 rounded-3xl shadow-xl hover:scale-[1.02] transition duration-300"
+  className="flex items-center justify-between bg-base-300 p-5 rounded-3xl shadow-xl hover:scale-[1.02] transition duration-300"
 >
 
   {/* Left Section */}

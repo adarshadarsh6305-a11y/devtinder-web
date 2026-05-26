@@ -1,6 +1,20 @@
+import axios from "axios";
+import { Base_Url } from "../constants";
+import { useDispatch } from "react-redux";
+import {removeOneFeed} from "../utils/feedSlice";
 const UserCard = ({ feed }) => {
-
-
+const dispatch = useDispatch();
+const handleSendRequest = async (status,userId)=>{
+try{
+  const res=await axios.post(Base_Url+"/request/send/"+status+"/"+userId,{}
+    ,{withCredentials:true}
+  );
+  dispatch(removeOneFeed(userId));
+}
+catch(err){
+  console.log(err);
+}
+}
   const {
     firstName,
     lastName,
@@ -82,11 +96,13 @@ const UserCard = ({ feed }) => {
         {/* Buttons */}
         <div className="card-actions justify-center gap-4 pt-3">
 
-          <button className="btn bg-green-500 hover:bg-green-600 text-white border-none rounded-xl px-6 font-semibold shadow-md">
+          <button className="btn bg-green-500 hover:bg-green-600 text-white border-none rounded-xl px-6 font-semibold shadow-md"
+          onClick={()=>handleSendRequest("interested",feed._id)}>
             Interested
           </button>
 
-          <button className="btn bg-red-500 hover:bg-red-600 text-white border-none rounded-xl px-6 font-semibold shadow-md">
+          <button className="btn bg-red-500 hover:bg-red-600 text-white border-none rounded-xl px-6 font-semibold shadow-md"
+          onClick={()=>handleSendRequest("ignored",feed._id)}>
             Ignore
           </button>
 

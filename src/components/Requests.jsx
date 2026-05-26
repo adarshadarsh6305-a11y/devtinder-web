@@ -3,12 +3,29 @@ import { Base_Url } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addRequests } from "../utils/requestSlice";
+import { removeRequest} from "../utils/requestSlice";
+
 
 const Requests = () => {
 
   const requests = useSelector((store) => store.requests);
 
   const dispatch = useDispatch();
+
+  const reviewRequest=async (status,_id)=>{
+    try{
+
+    
+      const res=await axios.post(Base_Url+"/request/review/"+status+"/"+_id,
+        {}
+        ,{withCredentials:true});
+        dispatch(removeRequest(_id));
+      }
+catch(err){
+  console.log(err);
+}
+
+  }
 
   const fetchRequests = async () => {
 
@@ -41,10 +58,14 @@ const Requests = () => {
   },[]);
   console.log(requests);
     
-  if(!requests) return null;
+  if(!requests) return;
+
+  const validRequests = requests.filter(
+   (request)=>request?.fromUserId != null
+);
 
   // EMPTY STATE
-  if(requests.length === 0){
+  if(validRequests.length === 0){
 
     return (
 
@@ -74,9 +95,7 @@ const Requests = () => {
 
       <div className="w-full max-w-2xl space-y-4">
 
-    {requests
-  .filter((request) => request?.fromUserId != null)
-  .map((request) => {
+    {validRequests.map((request) => {
 
     const {
       _id,
@@ -111,7 +130,7 @@ const Requests = () => {
           {/* USER INFO */}
           <div>
 
-            <h2 className="text-lg font-bold text-white">
+            <h2 className="text-2xl font-bold text-white">
               {firstName} {lastName}
             </h2>
 
@@ -134,11 +153,12 @@ const Requests = () => {
 
           <button
             className="btn btn-sm bg-red-500 hover:bg-red-600 border-none text-white rounded-lg px-5"
+            onClick={()=>reviewRequest("rejected",request._id)}
           >
             Reject
           </button>
 
-          <button
+          <button onClick={()=>reviewRequest("accepted",request._id)}
             className="btn btn-sm bg-pink-500 hover:bg-pink-600 border-none text-white rounded-lg px-5"
           >
             Accept

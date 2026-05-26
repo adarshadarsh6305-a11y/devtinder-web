@@ -25,7 +25,13 @@ const Feed = () =>{
     useEffect(()=>{
         fetchFeed();
     },[]);
+if(!feed) return;
+if(feed.length<=0){
+    return (<div className="flex justify-center text-3xl my-10">
 
+No New Users Found
+    </div>)
+}
     return(
         <>
         

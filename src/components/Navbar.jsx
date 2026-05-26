@@ -7,6 +7,9 @@ import {useNavigate} from "react-router-dom";
 import {removeUser} from "../utils/userSlice";
 import {removeFeed} from "../utils/feedSlice";
 import {removeConnections} from "../utils/connectionSlice";
+import {removeRequests} from "../utils/requestSlice";
+
+
 
 
 
@@ -22,7 +25,8 @@ const Navbar = () => {
     dispatch(removeUser());
     dispatch(removeFeed());
     dispatch(removeConnections());
-    
+    dispatch(removeRequests());
+
 
     navigate("/login");
   };
