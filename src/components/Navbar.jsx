@@ -38,7 +38,7 @@ const Navbar = () => {
 
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-xl">
-          DevTinder
+           🧑‍💻 DevTinder
         </Link>
       </div>
 
