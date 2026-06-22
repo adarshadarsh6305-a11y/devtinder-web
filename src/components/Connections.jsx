@@ -1,4 +1,5 @@
 import axios from "axios";
+import {Link} from "react-router-dom";
 import { Base_Url } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -22,6 +23,8 @@ const Connections = () => {
         Base_Url + "/user/connections",
         { withCredentials:true }
       );
+
+   
 
       dispatch(addConnections(res.data.data));
 
@@ -145,9 +148,10 @@ if(!userConnections) return;
   </div>
 
   {/* Right Section */}
-  <button className="btn btn-primary rounded-xl px-6">
+  <Link to={"/chat/"+_id}><button  className="btn btn-primary rounded-xl px-6">
     Message
   </button>
+  </Link>
 
 </div>
 
