@@ -148,7 +148,7 @@ if(!userConnections) return;
   </div>
 
   {/* Right Section */}
-  <Link to={"/chat/"+_id}><button  className="btn btn-primary rounded-xl px-6">
+  <Link to={"/chat/"+_id} state={{firstName,lastName}}><button  className="btn btn-primary rounded-xl px-6">
     Message
   </button>
   </Link>
