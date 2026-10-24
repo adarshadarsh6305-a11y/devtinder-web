@@ -46,23 +46,34 @@ const Chat = () => {
   },[toUserId]);
 
   useEffect(() => {
-  if (!userId) return;
+if (!userId || !toUserId) return;
 
-  socketRef.current = createSocket();
+const socket = createSocket();
+socketRef.current = socket;
 
-  socketRef.current.emit("joinChat", { userId, toUserId });
+socket.on("connect", () => {
+console.log("Socket connected:", socket.id);
+socket.emit("joinChat", { userId, toUserId });
+});
 
-  socketRef.current.on("recievedMessage", ({ userId, firstName, lastName, text }) => {
-    setmessages((messages) => [...messages, { userId, firstName, lastName, text }]);
-  });
+socket.on("recievedMessage", ({ userId, firstName, lastName, text }) => {
+setmessages((prevMessages) => [
+...prevMessages,
+{ userId, firstName, lastName, text },
+]);
+});
 
-  socketRef.current.on("onlineUsersInChat", (onlineUsers) => {
-    setIsTargetUserOnline(onlineUsers.includes(toUserId));
-  });
+socket.on("onlineUsersInChat", (onlineUsers) => {
+setIsTargetUserOnline(onlineUsers.includes(toUserId));
+});
 
-  return () => {
-    socketRef.current.disconnect();
-  };
+socket.on("connect_error", (error) => {
+console.error("Socket connection error:", error.message);
+});
+
+return () => {
+socket.disconnect();
+};
 }, [userId, toUserId]);
       
     
