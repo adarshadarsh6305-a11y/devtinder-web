@@ -21,9 +21,7 @@ const Payments = () => {
         name: 'Dev Tinder',
         description: 'Test Transaction',
         order_id: orderId, 
-
         handler: async function(response){
-
     const verifyRes =
       await axios.post(
         Base_Url + "/payment/verify",

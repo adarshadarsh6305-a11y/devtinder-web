@@ -8,10 +8,8 @@ const user = useSelector((store) => store.user);
   return (
 
  user&&(<div className="flex justify-center mt-1 mb-10">
-
       <EditProfile user={user}/>
     </div>
-   
  )
   );
 

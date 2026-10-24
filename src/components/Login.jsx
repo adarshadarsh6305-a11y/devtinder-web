@@ -24,7 +24,6 @@ const handleLogin = async ()=>{
     return navigate("/");
   }
 
-
   catch(err){
     setError(err?.response?.data);
   }
@@ -84,7 +83,7 @@ const handleSignUp = async ()=>{
               type="email" 
               value={emailId}
               className="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none" 
-              placeholder="you@example.com"
+              placeholder=""
               onChange={(e)=>setEmailId(e.target.value)}
             />
           </div>    

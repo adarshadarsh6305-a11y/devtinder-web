@@ -29,14 +29,14 @@ if(!feed) return;
 if(feed.length<=0){
     return (<div className="flex justify-center text-3xl my-10">
 
-No New Users Found
+No New Users Found!!!!!
     </div>)
 }
     return(
         <>
         
   <div className="flex justify-center pt-6 pb-20">
-
+    
   {feed?.length > 0 && (
     <UserCard feed={feed[0]} />
   )}
