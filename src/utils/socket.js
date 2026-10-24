@@ -1,11 +1,13 @@
-import {Base_Url} from "../constants";
+import { Base_Url } from "../constants";
 import io from "socket.io-client";
 
-export const createSocket=()=>{
-    if(window.location.hostname === "localhost"){
-    return io(Base_Url);
-    }
-    else{
-        return io("/",{path:"/api/socket.io"})
-    }
+export const createSocket = () => {
+return io(
+window.location.hostname === "localhost"
+? Base_Url
+: "https://devtinder-fy18.onrender.com",
+{
+withCredentials: true,
 }
+);
+};
